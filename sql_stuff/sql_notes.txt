@@ -1,0 +1,40 @@
+Day 1 - 
+    Learn to navigate the postgres cli
+    Learn to create a user
+    Learn to create a database
+    Learn to create a table
+    Identify the different relationships in a SQL database
+    Identify the four steps to take every time a new project is started
+
+Day 2 -
+    Review Day 1
+        Create a user
+        Create a database
+    Design a database to hold boardgames, players, and reviews
+    Create tables for above database
+    Insert data into tables
+    Learn query syntax and write practice queries
+    Further discuss relationships between data
+        Learn to query for related data
+    Build a table to enable a many-to-many relationship
+
+Day 3 - 
+    Morning:
+        Learn about subqueries (not assessed)
+        Design a database with class
+    Afternoon:
+        Begin dive into Sequelize
+        Learn to:
+            Create a database
+            Create tables
+            Insert data
+        Examine the purpose and differences between models and migrations
+
+Day 4 -
+    Review Sequelize:
+        Create additional tables
+        Insert data
+    Create associations between models to enable querying for related data
+    Learn to query for data with Sequelize
+    Learn to query for related data with Sequelize
+
