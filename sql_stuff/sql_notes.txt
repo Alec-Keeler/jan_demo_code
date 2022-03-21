@@ -1,10 +1,28 @@
 Day 1 - 
     Learn to navigate the postgres cli
+        \l - list of databases
+        \du - list of users
+        \dt - list tables for current db
+        \c *databasename* - connects to named db
+        \d *tablename* - details of specified table
+        \q - quit postgres
     Learn to create a user
+        CREATE USER user_name WITH ATTRIBUTES;
     Learn to create a database
+        CREATE DATABASE databasename WITH OWNER user_name
     Learn to create a table
+        CREATE TABLE tablename (
+            id SERIAL PRIMARY KEY,
+            text VARCHAR(50)[[TEXT]] NOT NULL UNIQUE,
+            thing_id INTEGER REFERENCES referencedtablename (id)
+        );
     Identify the different relationships in a SQL database
+        1-1, 1-M, M-M
     Identify the four steps to take every time a new project is started
+        1 - Create a user
+        2 - Create the database (owned by the above user)
+        3 - Create tables
+        4 - Insert data into tables
 
 Day 2 -
     Review Day 1
