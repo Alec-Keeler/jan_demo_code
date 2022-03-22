@@ -1,13 +1,13 @@
--- INSERT INTO boardgames (name, avg_rating, max_players, category)
--- VALUES
---     ('Gloomhaven', 8.8, 4, 'Adventure'),
---     ('Pandemic Legacy: Season 1', 8.62, 4, 'Cooperative'),
---     ('Brass: Birmingham', 8.66, 4, 'Economic'),
---     ('Terraforming Mars', 8.43, 5, 'Economic'),
---     ('Twilight Imperium: Fourth Edition', 8.7, 6, 'Strategy'),
---     ('Spirit Island', 8.34, 4, 'Cooperative'),
---     ('Mage Knight', 8.1, 4, 'Adventure'),
---     ('Rising Sun', 7.88, 5, 'Strategy');
+INSERT INTO boardgames (name, avg_rating, max_players, category)
+VALUES
+    ('Gloomhaven', 8.8, 4, 'Adventure'),
+    ('Pandemic Legacy: Season 1', 8.62, 4, 'Cooperative'),
+    ('Brass: Birmingham', 8.66, 4, 'Economic'),
+    ('Terraforming Mars', 8.43, 5, 'Economic'),
+    ('Twilight Imperium: Fourth Edition', 8.7, 6, 'Strategy'),
+    ('Spirit Island', 8.34, 4, 'Cooperative'),
+    ('Mage Knight', 8.1, 4, 'Adventure'),
+    ('Rising Sun', 7.88, 5, 'Strategy');
 
 -- INSERT INTO players (name, fave_category, prefers_video_games)
 -- VALUES
