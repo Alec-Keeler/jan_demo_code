@@ -1,5 +1,6 @@
 -- psql -d boardgame_dev < sql_code.sql
 DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS lfg;
 DROP TABLE IF EXISTS boardgames;  
 DROP TABLE IF EXISTS players;
 
@@ -101,14 +102,45 @@ VALUES
 -- WHERE id IN (2, 3);
 
 -- UPDATE boardgames
--- SET name = name || '(Game of the Year!)'
+-- SET name = name || ' (Game of the Year!)'
+-- WHERE id = 1;
 -- ORDER BY avg_rating DESC
 -- LIMIT 1;
 
 -- Task 5b
-DELETE FROM boardgames
-WHERE id = 4;
+-- DELETE FROM boardgames
+-- WHERE id = 4;
 
 -- INSERT INTO boardgames (name, avg_rating, max_players, category)
 -- VALUES
 -- ('Scythe', 8.5, 5, 'Strategy');
+
+-- SELECT * FROM boardgames
+-- JOIN reviews ON (reviews.boardgame_id = boardgames.id)
+-- WHERE boardgames.id = 5;
+
+create table lfg (
+    id SERIAL PRIMARY KEY,
+    game_id INTEGER,
+    player_id INTEGER,
+    FOREIGN KEY (game_id) REFERENCES boardgames,
+    FOREIGN KEY (player_id) REFERENCES players
+);
+
+INSERT INTO lfg (player_id, game_id)
+VALUES
+    (1, 5),
+    (1, 2),
+    (3, 1),
+    (5, 5),
+    (2, 2),
+    (4, 4),
+    (6, 4),
+    (1, 4);
+
+
+SELECT boardgames.name, boardgames.id, lfg.game_id, lfg.player_id, players.id, players.name
+FROM boardgames
+JOIN lfg ON (lfg.game_id = boardgames.id)
+JOIN players ON (lfg.player_id = players.id)
+WHERE boardgames.id = 4;
