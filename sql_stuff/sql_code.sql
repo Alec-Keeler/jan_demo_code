@@ -94,3 +94,21 @@ VALUES
 -- WHERE name ILIKE '%r%';
 
 -- SELECT name, (avg_rating * 10) AS percentage, max_players FROM boardgames;
+
+-- Task 5a
+-- UPDATE players
+-- SET prefers_video_games = true
+-- WHERE id IN (2, 3);
+
+-- UPDATE boardgames
+-- SET name = name || '(Game of the Year!)'
+-- ORDER BY avg_rating DESC
+-- LIMIT 1;
+
+-- Task 5b
+DELETE FROM boardgames
+WHERE id = 4;
+
+-- INSERT INTO boardgames (name, avg_rating, max_players, category)
+-- VALUES
+-- ('Scythe', 8.5, 5, 'Strategy');
