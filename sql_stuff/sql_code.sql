@@ -115,10 +115,12 @@ VALUES
 -- VALUES
 -- ('Scythe', 8.5, 5, 'Strategy');
 
+-- Task 6a
 -- SELECT * FROM boardgames
 -- JOIN reviews ON (reviews.boardgame_id = boardgames.id)
 -- WHERE boardgames.id = 5;
 
+-- Task 6b
 create table lfg (
     id SERIAL PRIMARY KEY,
     game_id INTEGER,
@@ -138,7 +140,7 @@ VALUES
     (6, 4),
     (1, 4);
 
-
+-- Task 6c
 SELECT boardgames.name, boardgames.id, lfg.game_id, lfg.player_id, players.id, players.name
 FROM boardgames
 JOIN lfg ON (lfg.game_id = boardgames.id)
