@@ -141,8 +141,50 @@ VALUES
     (1, 4);
 
 -- Task 6c
-SELECT boardgames.name, boardgames.id, lfg.game_id, lfg.player_id, players.id, players.name
-FROM boardgames
-JOIN lfg ON (lfg.game_id = boardgames.id)
-JOIN players ON (lfg.player_id = players.id)
-WHERE boardgames.id = 4;
+-- SELECT boardgames.name, boardgames.id, lfg.game_id, lfg.player_id, players.id, players.name
+-- FROM boardgames
+-- JOIN lfg ON (lfg.game_id = boardgames.id)
+-- JOIN players ON (lfg.player_id = players.id)
+-- WHERE boardgames.id = 4;
+
+-- Info we have - search term (reviews)
+-- Info we want - name of related boardgames
+
+-- Task 7a
+-- SELECT name FROM boardgames
+-- WHERE id IN (
+--     SELECT boardgame_id FROM reviews
+--     WHERE content LIKE 'T%'
+-- );
+
+-- SELECT boardgames.name, boardgames.id, lfg.game_id, lfg.player_id, players.id, players.name
+-- FROM boardgames
+-- JOIN lfg ON (lfg.game_id = boardgames.id)
+-- JOIN players ON (lfg.player_id = players.id)
+-- WHERE boardgames.id = 4;
+
+-- Info we have - name of boardgame
+-- Info we want - name of players who want to play that game
+--     query boardgames for id
+--     query lfg (with boardgame id) for player id
+--     query players (with player id)
+
+-- SELECT name FROM players
+-- WHERE id IN (
+--     SELECT player_id FROM lfg
+--     WHERE game_id IN (
+--         SELECT id FROM boardgames
+--         WHERE name = 'Terraforming Mars'
+--     )
+-- );
+
+-- goal - list of games based on a player's fave category
+-- info - player's name
+
+
+-- SELECT boardgames.name FROM boardgames
+-- WHERE category IN (
+--     SELECT fave_category FROM players
+--     WHERE name = 'Ryan'
+-- );
+
