@@ -1,0 +1,36 @@
+Step 1 (from scratch)
+    initialize node
+        npm init -y
+
+Step 2
+    Install necessary packages
+        sequelize@^5.0.0
+        sequelize-cli@^5.0.0
+        pg
+Step 3
+    Initialize sequelize
+        npx sequelize init
+            config/config.json
+            models/index.js
+            migrations 
+            seeders
+
+Create a user
+
+Create a database
+    npx sequelize db:create
+Create tables
+    npx sequelize model:generate --name ModelName --attributes col1:datatype,col2:datatype
+    npx sequelize db:migrate
+    To drop table(s)
+        npx sequelize db:migrate:undo:all
+    migration
+        creates table in database
+        Pluralized (capitalized)
+    model
+        interact with data in tables
+        Singularized (capitalized)
+Insert data
+    npx sequelize seed:generate --name userData
+    npx sequelize db:seed:all
+    npx sequelize db:seed:undo:all
