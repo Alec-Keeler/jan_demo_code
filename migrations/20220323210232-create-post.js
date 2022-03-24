@@ -24,6 +24,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {model: "Users"}
       },
+      subbreadditId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: "Subbreaddits" }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
