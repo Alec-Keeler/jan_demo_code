@@ -115,4 +115,33 @@ async function findPostsInOrder() {
     sequelize.close()
 }
 
-findPostsInOrder()
+// findPostsInOrder()
+
+// Task 14a
+async function updateUser(name, oldEmail, newEmail) {
+    const user = await User.findOne({
+        where: {
+            email: oldEmail
+        }
+    })
+
+    user.name = name
+    user.email = newEmail
+
+    await user.save()
+
+    sequelize.close()
+}
+
+// updateUser('Alec Keeler', 'alec@alec.alec', 'alec@keeler.alec')
+
+// Task 14b
+async function destroyUser(userId) {
+    const user = await User.findByPk(userId)
+
+    await user.destroy()
+
+    sequelize.close()
+}
+
+// destroyUser(6)
