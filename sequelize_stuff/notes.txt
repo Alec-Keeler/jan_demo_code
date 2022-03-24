@@ -34,3 +34,12 @@ Insert data
     npx sequelize seed:generate --name userData
     npx sequelize db:seed:all
     npx sequelize db:seed:undo:all
+
+Query methods
+    create
+    build
+    save
+    destroy
+    findByPk
+    findOne
+    findAll
