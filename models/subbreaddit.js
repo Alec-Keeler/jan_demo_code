@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Subbreaddit.associate = function(models) {
     // associations can be defined here
+    Subbreaddit.hasMany(models.Post, { foreignkey: 'subbreadditId'})
   };
   return Subbreaddit;
 };

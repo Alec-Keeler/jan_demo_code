@@ -10,7 +10,14 @@ module.exports = (sequelize, DataTypes) => {
   Post.associate = function(models) {
     // associations can be defined here
     // Task 10b
-    Post.belongsTo(models.User, {foreignKey: 'userId'})
+    Post.belongsTo(models.User, {foreignKey: 'userId', as: 'postusers'})
+    Post.belongsTo(models.Subbreaddit, { foreignKey: 'subbreadditId'})
+    Post.belongsToMany(models.User, {
+      through: 'Vote',
+      foreignKey: 'postId',
+      otherKey: 'userId',
+      as: 'postvoteusers'
+    })
   };
   return Post;
 };
