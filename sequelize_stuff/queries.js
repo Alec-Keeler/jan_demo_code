@@ -1,5 +1,6 @@
 // Task 12a
-const { Post, User, sequelize, Sequelize: { Op }} = require('../models');
+const { Post, User, Subbreaddit, sequelize, Sequelize: { Op }} = require('../models');
+
 
 // Task 12b
 async function createUser(name, password, email) {
@@ -145,3 +146,49 @@ async function destroyUser(userId) {
 }
 
 // destroyUser(6)
+
+// Task 15a
+async function findSubAndPosts(subId) {
+    const sub = await Subbreaddit.findByPk(subId, {
+        include: Post
+    })
+    console.log(sub.name, sub.Posts[0].title)
+
+    sequelize.close()
+}
+
+findSubAndPosts(1)
+
+// Task 15b
+async function findPostInfo(postId) {
+    const post = await Post.findByPk(postId, {
+        include: [{model: Subbreaddit}, {
+            model: User,
+            as: 'postusers'
+        }]
+    })
+
+    console.log(post.title, post.Subbreaddit.name)
+    console.log(post.postusers.name)
+
+    sequelize.close()
+}
+
+// findPostInfo(1)
+
+// Task 15c
+async function getUserPostInfo(userId) {
+    const user = await User.findByPk(userId, {
+        include: {
+            model: Post,
+            as: 'postusers',
+            include: Subbreaddit
+        }
+    })
+
+    console.log(user.name, user.postusers[0].title, user.postusers[0].Subbreaddit.name)
+
+    sequelize.close()
+}
+
+// getUserPostInfo(2)
