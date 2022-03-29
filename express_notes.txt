@@ -1,0 +1,29 @@
+Setting up Express
+
+Step 1 - Initialize npm if not already done
+
+Step 2 - Insteall the express node package
+
+Step 3 - Create our main express file (app.js)
+    import the express package
+    have app listen to a port
+
+Pug set up -
+    npm install pug
+    set the view engine on the app
+    create a views folder
+
+
+important methods
+route handler methods:
+    get
+    post
+    patch/put
+    delete
+    all
+
+response methods
+    send (plain text response)
+    render (render html templates)
+    json
+    redirect

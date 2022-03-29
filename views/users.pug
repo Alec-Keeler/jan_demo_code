@@ -1,0 +1,10 @@
+html
+    title= title
+    link(rel="stylesheet" href="/css/test.css") 
+body
+    each user in users
+        div.userContainer
+            p= user.name
+            p= user.password
+            p= user.email
+            p= user.faveBread
