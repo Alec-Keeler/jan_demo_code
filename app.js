@@ -4,12 +4,14 @@ const app = express();
 
 const { User } = require('./models');
 const usersRouter = require('./routes/users.js');
+const postsRouter = require('./routes/posts.js');
 
 
 
 // Task 21b
-app.use('/users', usersRouter)
-app.use('/bananas', usersRouter)
+app.use('/users', usersRouter);
+app.use('/bananas', usersRouter);
+app.use('/posts', postsRouter);
 
 // Task 18
 app.get('/', (req, res) => {

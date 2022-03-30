@@ -1,0 +1,15 @@
+extends layout.pug
+//- Task 26b
+block mainContent
+    form(action="/posts" method="post") 
+        label(for="title") Title:
+        input(type="text" name="title")
+        label(for="content") Content:
+        textarea(name="content", cols="30", rows="10") 
+        label(for="link") (Optional) Link:
+        input(type="text" name="link")
+        label(for="subbreadditId") Subbreaddit: 
+        select(name="subbreadditId") 
+            each sub in subs
+                option(value=sub.id) #{sub.name}
+        button Create
