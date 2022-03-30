@@ -1,10 +1,15 @@
-html
-    title= title
+extends layout.pug
+block mainContent
     link(rel="stylesheet" href="/css/test.css") 
-body
-    each user in users
-        div.userContainer
-            p= user.name
-            p= user.password
-            p= user.email
-            p= user.faveBread
+    include utils.pug
+    table.testClass
+        thead
+            tr
+                th Name
+                th Password
+                th Email 
+                th Favorite Bread
+                th Profile Link
+        tbody
+            each user in users
+                +userRow(user)

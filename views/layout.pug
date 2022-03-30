@@ -1,5 +1,11 @@
-html 
-    title= title
-body
-    h1(class = 'header-class' id = 'uniqueId').additionalClass Welcome to Breaddit!
-    p.className.otherClass#someId This is a paragraph
+html
+    head
+        title= title
+    body
+        nav
+            ul 
+                li: a(href="/users") Users
+                li: a(href="/") Home
+        block mainContent
+        footer
+            div About this page

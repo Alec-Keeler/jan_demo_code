@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
     // res.send('Welcome to Breaddit!')
     const title = 'Breaddit'
     // Task 19c
-    res.render('layout', {title})
+    res.render('index', {title})
 })
 
 app.all(/[abc]*45t?/, (req, res) => {

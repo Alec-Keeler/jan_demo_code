@@ -1,7 +1,13 @@
-html
-    title= title
-body
-    p= user.name
-    p= user.password
-    p= user.email
-    p= user.faveBread
+extends layout.pug
+block mainContent
+    include utils.pug
+    table
+        thead
+            tr
+                th Name
+                th Password
+                th Email 
+                th Favorite Bread
+                th Profile Link
+        tbody
+            +userRow(user)
