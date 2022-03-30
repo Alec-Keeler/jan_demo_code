@@ -27,3 +27,11 @@ response methods
     render (render html templates)
     json
     redirect
+
+
+Csrf protection
+    csurf
+        csrfProtection = csurf({cookie: true})
+        form: input(type="hidden" name="_csrf" value=csrfToken)
+    cookie-parser
+        app.use(cookieParser())

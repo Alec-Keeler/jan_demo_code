@@ -1,17 +1,27 @@
 // Task 17a
 const express = require('express');
 const app = express();
+const cookieParser = require('cookie-parser');
 
 const { User } = require('./models');
 const usersRouter = require('./routes/users.js');
 const postsRouter = require('./routes/posts.js');
 
+// Task 27a
+app.use((req, res, next) => {
+    req.banana = true
+    next()
+})
 
+// Task 28a
+app.use(express.urlencoded({extended: false}))
+app.use(cookieParser())
 
 // Task 21b
 app.use('/users', usersRouter);
 app.use('/bananas', usersRouter);
 app.use('/posts', postsRouter);
+
 
 // Task 18
 app.get('/', (req, res) => {

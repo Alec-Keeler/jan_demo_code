@@ -1,13 +1,17 @@
 extends layout.pug
 //- Task 26b
 block mainContent
+    if errors.length
+        each err in errors
+            p= err
     form(action="/posts" method="post") 
+        input(type="hidden" name="_csrf" value=csrfToken)
         label(for="title") Title:
-        input(type="text" name="title")
+        input(type="text" name="title" value=data.title)
         label(for="content") Content:
-        textarea(name="content", cols="30", rows="10") 
+        textarea(name="content", cols="30", rows="10" value=data.content) 
         label(for="link") (Optional) Link:
-        input(type="text" name="link")
+        input(type="text" name="link" value=data.link)
         label(for="subbreadditId") Subbreaddit: 
         select(name="subbreadditId") 
             each sub in subs

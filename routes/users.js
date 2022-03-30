@@ -3,10 +3,19 @@ const express = require('express');
 const router = express.Router();
 const { User, Post } = require('../models');
 
+// Task 27b
+router.use((req, res, next) => {
+    if (req.banana) {
+        console.log('hi from users router')
+    }
+    next()
+})
+
 // Task 20 /users
 router.get('/', async (req, res) => {
     // res.send('users router')
     // Task 20a
+    console.log(req.banana)
     const users = await User.findAll();
     res.render('users', { users, title: 'Breaddit Users' })
 })

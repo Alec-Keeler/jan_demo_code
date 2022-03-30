@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/Alec-Keeler/jan_demo_code#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
     "express": "^4.17.3",
     "nodemon": "^2.0.15",
     "pg": "^8.7.3",
