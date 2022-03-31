@@ -4,6 +4,12 @@ const { Subbreaddit, Post } = require('../db/models');
 const csrf = require('csurf');
 const csrfProtection = csrf({cookie: true});
 
+const asyncHandler = (handler) => {
+    return (req, res, next) => {
+        return handler(req, res, next).catch(next);
+    };
+};
+// const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
 // Task 26a
 router.get('/new', csrfProtection, async(req, res) => {
@@ -21,7 +27,7 @@ const contentCheck = (req, res, next) => {
     }
 }
 
-router.post('/', contentCheck, csrfProtection, async(req, res) => {
+router.post('/', contentCheck, csrfProtection, asyncHandler(async(req, res, next) => {
     // console.log(req.body)
     const { title, content, link, subbreadditId } = req.body
     if (req.errors) {
@@ -29,15 +35,19 @@ router.post('/', contentCheck, csrfProtection, async(req, res) => {
         let subId = parseInt(subbreadditId, 10)
         res.render('create-post', { subs, data: req.body, subId, errors: req.errors, csrfToken: req.csrfToken() })
     } else {
-        const post = await Post.create({
-            title,
-            content,
-            link,
-            subbreadditId,
-            userId: 1
-        })
-        res.redirect('/users')
+        // try {
+            const post = await Post.create({
+                title,
+                content,
+                link,
+                subbreadditId,
+                userId: 1
+            })
+            res.redirect('/users')
+        // } catch (err) {
+        //     next(err)
+        // }
     }
-})
+}))
 
 module.exports = router;

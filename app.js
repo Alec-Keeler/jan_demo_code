@@ -64,6 +64,25 @@ app.all(/[abc]*45t?/, (req, res) => {
 app.set('view engine', 'pug');
 app.use(express.static('./public'))
 
+//ERROR HANDLING
+// Task 31a
+app.use((req, res, next) => {
+    console.log('hello from 404 handler')
+    const err = new Error('This page doesn\'t exist')
+    err.status = 404
+    // res.send('This page could not be found :(')
+    next(err)
+})
+
+app.use((err, req, res, next) => {
+    console.log(err.message, err.status)
+    console.log('hello from first error handler')
+})
+
+app.use((req, res, next) => {
+    console.log('this is the extra middleware')
+})
+
 // Task 17b
 // const port = 8081;
 // app.listen(port, () => console.log(`Listening on port ${port}...`));

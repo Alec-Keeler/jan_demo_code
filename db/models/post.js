@@ -2,7 +2,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define('Post', {
     content: DataTypes.TEXT,
-    title: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: true
+      }
+    },
     link: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     subbreadditId: DataTypes.INTEGER,
