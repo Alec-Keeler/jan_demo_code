@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
 
-const { User } = require('./models');
+const { User } = require('./db/models');
 const usersRouter = require('./routes/users.js');
 const postsRouter = require('./routes/posts.js');
 
@@ -65,5 +65,7 @@ app.set('view engine', 'pug');
 app.use(express.static('./public'))
 
 // Task 17b
-const port = 8081;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+// const port = 8081;
+// app.listen(port, () => console.log(`Listening on port ${port}...`));
+
+module.exports = app;
