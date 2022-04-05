@@ -4,6 +4,7 @@ const router = express.Router();
 const { User, Post } = require('../db/models');
 const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
+const bcrypt = require('bcryptjs');
 
 // Task 27b
 router.use((req, res, next) => {
@@ -62,9 +63,11 @@ router.post('/signup', csrfProtection, signUpValidator, async (req, res) => {
             user: req.body
         })
     } else {
-        //Perform password hashing before createing the user
+        //Perform password hashing before creating the user
+        const hashedPassword = await bcrypt.hash(password, 12)
+        console.log(hashedPassword)
         const user = await User.create({
-            name, faveBread, email, password, avatar
+            name, faveBread, email, hashedPassword, avatar
         })
         res.redirect('/users')
     }
@@ -85,8 +88,9 @@ router.post('/login', csrfProtection, async (req, res) => {
         }
     })
     //Fill out with password hashing
-    //const isPassword =
+    const isPassword = await bcrypt.compare(password, user.hashedPassword)
     if (user && isPassword) {
+        console.log('successful login!')
         res.redirect('/users')
     } else {
         req.errors.push('Account validation failed.  Please Try again.')
