@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 })
 
 // Task 20c
-router.get('/:userId', async (req, res) => {
+router.get('/:userId(\\d+)', async (req, res) => {
     console.log(req.params)
     const user = await User.findByPk(req.params.userId)
     // console.log(user)
@@ -54,7 +54,7 @@ const signUpValidator = (req, res, next) => {
 }
 // Task 33c ^^vv
 router.post('/signup', csrfProtection, signUpValidator, async (req, res) => {
-    const { name, faveBread, email, passwor, avatar } = req.body
+    const { name, faveBread, email, password, avatar } = req.body
     if (req.errors.length > 0) {
         res.render('signup', {
             csrfToken: req.csrfToken(),
