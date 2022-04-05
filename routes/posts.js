@@ -27,7 +27,16 @@ const contentCheck = (req, res, next) => {
     }
 }
 
-router.post('/', contentCheck, csrfProtection, asyncHandler(async(req, res, next) => {
+// Task 37
+const authCheck = (req, res, next) => {
+    if (req.session.auth) {
+        next()
+    } else {
+        res.redirect('/users/login')
+    }
+}
+
+router.post('/', authCheck, contentCheck, csrfProtection, asyncHandler(async(req, res, next) => {
     // console.log(req.body)
     const { title, content, link, subbreadditId } = req.body
     if (req.errors) {
@@ -41,7 +50,7 @@ router.post('/', contentCheck, csrfProtection, asyncHandler(async(req, res, next
                 content,
                 link,
                 subbreadditId,
-                userId: 1
+                userId: req.session.auth.userId
             })
             res.redirect('/users')
         // } catch (err) {

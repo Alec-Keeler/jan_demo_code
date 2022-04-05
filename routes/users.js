@@ -18,7 +18,8 @@ router.use((req, res, next) => {
 router.get('/', async (req, res) => {
     // res.send('users router')
     // Task 20a
-    console.log(req.banana)
+    // console.log(req.banana)
+    console.log(req.session)
     const users = await User.findAll();
     res.render('users', { users, title: 'Breaddit Users' })
 })
@@ -64,11 +65,13 @@ router.post('/signup', csrfProtection, signUpValidator, async (req, res) => {
         })
     } else {
         //Perform password hashing before creating the user
+        // Task 35a
         const hashedPassword = await bcrypt.hash(password, 12)
         console.log(hashedPassword)
         const user = await User.create({
             name, faveBread, email, hashedPassword, avatar
         })
+        req.session.auth = {userId: user.id, name: user.name}
         res.redirect('/users')
     }
 })
@@ -88,14 +91,24 @@ router.post('/login', csrfProtection, async (req, res) => {
         }
     })
     //Fill out with password hashing
+    // Task 35b
     const isPassword = await bcrypt.compare(password, user.hashedPassword)
     if (user && isPassword) {
         console.log('successful login!')
+        // Task 36b
+        req.session.auth = { userId: user.id, name: user.name }
         res.redirect('/users')
     } else {
         req.errors.push('Account validation failed.  Please Try again.')
         res.render('login', { csrfToken: req.csrfToken(), errors: req.errors, user: { email } })
     }
+})
+
+// Task 36c/Task 36d
+router.get('/logout', async(req, res) => {
+    delete req.session.auth
+    // res.redirect('/')
+    req.session.save(() => res.redirect('/'))
 })
 
 module.exports = router;

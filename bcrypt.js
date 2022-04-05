@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 // hash
 // compare
 
+// Task 35a
 async function generateHash(password) {
     console.log(await bcrypt.hash(password, 10))
 }
@@ -16,6 +17,7 @@ async function generateHash(password) {
 // $yBdL5R8LrgpBUvdC1icROe1e - salt (first 22 characters)
 // nQq30NUryOplh2LhOLMCTgh5hg9We - hashed output
 
+// Task 35b
 async function checkPass(password, hash) {
     const isPassword = await bcrypt.compare(password, hash)
 
