@@ -1,0 +1,21 @@
+extends layout.pug 
+//- Task 33b
+block content 
+    if errors.length > 0
+        each err in errors 
+            p= err
+    form(action="/users/signup" method="post")
+        input(type="hidden" name="_csrf" value=csrfToken)
+        label(for="name") Name
+        input(type="text" name="name" required value=user.name)
+        label(for="faveBread") Favorite Bread 
+        input(type="text" name="faveBread" value=user.faveBread)
+        label(for="email") Email
+        input(type="text" name="email" required value=user.email)
+        label(for="avatar") Avatar Link
+        input(type="text" name="avatar" value=user.avatar)
+        label(for="password") Password
+        input(type="text" name="password" required)
+        label(for="confirmPassword") Confirm Password
+        input(type="text" name="confirmPassword" required)
+        button Sign Up

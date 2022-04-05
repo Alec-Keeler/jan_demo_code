@@ -1,0 +1,13 @@
+extends layout.pug 
+//- Task 34b
+block content 
+    if errors.length > 0
+        each err in errors 
+            p= err
+    form(action="/users/login" method="post")
+        input(type="hidden" name="_csrf" value=csrfToken)
+        label(for="email") Email
+        input(type="text" name="email" required value=user.email)
+        label(for="password") Password
+        input(type="text" name="password" required)
+        button Log In 
