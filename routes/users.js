@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
     // res.send('users router')
     // Task 20a
     // console.log(req.banana)
-    console.log(req.session)
+    // console.log(req.session)
     const users = await User.findAll();
     res.render('users', { users, title: 'Breaddit Users' })
 })

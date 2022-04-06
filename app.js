@@ -25,11 +25,11 @@ app.use(session({
     saveUninitialized: false
 }))
 
-app.use((req, res, next) => {
-    console.log(req.session)
-    // req.session.potato = 'We like taters'
-    next()
-})
+// app.use((req, res, next) => {
+//     console.log(req.session)
+//     // req.session.potato = 'We like taters'
+//     next()
+// })
 
 // Task 21b
 app.use('/users', usersRouter);

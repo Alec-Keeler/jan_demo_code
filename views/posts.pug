@@ -1,0 +1,10 @@
+extends layout.pug 
+
+block mainContent
+    .all-posts-container
+        each post in posts
+            .single-post-container 
+                h2= post.title
+                p= post.content
+                if post.link 
+                    a(href=post.link)= post.link

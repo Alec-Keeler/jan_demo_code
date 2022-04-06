@@ -11,6 +11,13 @@ const asyncHandler = (handler) => {
 };
 // const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
+// Task 38
+router.get('/', asyncHandler(async(req, res) => {
+    const posts = await Post.findAll();
+
+    res.render('posts', {posts});
+}))
+
 // Task 26a
 router.get('/new', csrfProtection, async(req, res) => {
     const subs = await Subbreaddit.findAll()
