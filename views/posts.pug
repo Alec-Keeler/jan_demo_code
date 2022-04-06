@@ -1,10 +1,21 @@
 extends layout.pug 
 
 block mainContent
+    script(src="/javascripts/postDelete.js" type="module") 
+    script(src="/javascripts/postEdit.js" type="module") 
     .all-posts-container
         each post in posts
-            .single-post-container 
-                h2= post.title
-                p= post.content
+            div(id=`post-container-${post.id}`).single-post-container
+                h2(id=`${post.id}-title`)= post.title
+                p(id=`${post.id}-content`)= post.content
                 if post.link 
                     a(href=post.link)= post.link
+                if loggedInUser === post.userId
+                    button(class="delete-btn" id=`delete-btn-${post.id}`) Delete
+                    button(class="edit-btn" id=`edit-btn-${post.id}`) Edit
+                    form(class='hidden' id=`edit-form-${post.id}`) 
+                        label Title:
+                        input(type="text" name="title" value=post.title id=`${post.id}-edit-title`) 
+                        label Content:
+                        input(type="text" name="content" value=post.content id=`${post.id}-edit-content`) 
+                        button(class="edit-submit" id=`edit-submit-${post.id}`) Submit Edit

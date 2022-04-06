@@ -13,9 +13,15 @@ const asyncHandler = (handler) => {
 
 // Task 38
 router.get('/', asyncHandler(async(req, res) => {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+        order: [['id', 'DESC']]
+    });
+    let loggedInUser
+    if (req.session.auth) {
+        loggedInUser = req.session.auth.userId
+    }
 
-    res.render('posts', {posts});
+    res.render('posts', {posts, loggedInUser});
 }))
 
 // Task 26a
@@ -59,11 +65,33 @@ router.post('/', authCheck, contentCheck, csrfProtection, asyncHandler(async(req
                 subbreadditId,
                 userId: req.session.auth.userId
             })
-            res.redirect('/users')
+            res.redirect('/posts')
         // } catch (err) {
         //     next(err)
         // }
     }
+}))
+
+router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
+    const post = await Post.findByPk(req.params.id)
+
+    await post.destroy()
+    // console.log('you have arrived at the delete route: ', req.params.id)
+    res.json({message: 'Success'})
+}))
+
+router.put('/:id(\\d+)', asyncHandler(async(req, res) => {
+    // console.log('from put route handler: ', req.body)
+    const post = await Post.findByPk(req.params.id)
+
+    post.title = req.body.title
+    post.content = req.body.content
+    await post.save()
+
+    res.json({
+        message: 'Success',
+        post
+    })
 }))
 
 module.exports = router;

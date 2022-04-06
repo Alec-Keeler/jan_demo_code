@@ -5,3 +5,7 @@
 /* .testClass {
     background-color: red;
 } */
+
+.hidden {
+    display: none
+}
